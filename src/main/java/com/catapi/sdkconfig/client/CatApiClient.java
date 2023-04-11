@@ -30,7 +30,7 @@ public class CatApiClient {
     public String getNameByGet(String name) {
         // 最简单的HTTP请求，可以自动通过header等信息判断编码，不区分HTTP和HTTPS
         HashMap<String, Object> map = new HashMap<>();
-        map.put("name", "神经猫");
+        map.put("name", "nervouscat");
         String result= HttpUtil.get("http://localhost:9090/api/name/",map);
         System.out.println(result);
         return  result;
@@ -41,7 +41,7 @@ public class CatApiClient {
     public String getNameByPost(String name) {
         // 最简单的HTTP请求，可以自动通过header等信息判断编码，不区分HTTP和HTTPS
         HashMap<String, Object> map = new HashMap<>();
-        map.put("name", "神经猫");
+        map.put("name", "nervouscat");
         String result= HttpUtil.post("http://localhost:9090/api/name/",map);
         System.out.println(result);
         return result;
