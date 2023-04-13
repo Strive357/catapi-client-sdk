@@ -22,6 +22,9 @@ public class CatApiClient {
      */
     private String secretKey;
 
+    public static final String INTERFACE_GATEWAY_IP = "127.0.0.1";
+    public static final String INTERFACE_GATEWAY_PORT = "9797";
+
     public CatApiClient(String accessKey, String secretKey) {
         this.accessKey = accessKey;
         this.secretKey = secretKey;
@@ -31,7 +34,7 @@ public class CatApiClient {
         // 最简单的HTTP请求，可以自动通过header等信息判断编码，不区分HTTP和HTTPS
         HashMap<String, Object> map = new HashMap<>();
         map.put("name", "nervouscat");
-        String result= HttpUtil.get("http://localhost:9090/api/name/",map);
+        String result= HttpUtil.get(INTERFACE_GATEWAY_IP + ":" + INTERFACE_GATEWAY_PORT + "/api/name/",map);
         System.out.println(result);
         return  result;
     }
@@ -42,7 +45,7 @@ public class CatApiClient {
         // 最简单的HTTP请求，可以自动通过header等信息判断编码，不区分HTTP和HTTPS
         HashMap<String, Object> map = new HashMap<>();
         map.put("name", "nervouscat");
-        String result= HttpUtil.post("http://localhost:9090/api/name/",map);
+        String result= HttpUtil.post( INTERFACE_GATEWAY_IP + ":" + INTERFACE_GATEWAY_PORT + "/api/name/",map);
         System.out.println(result);
         return result;
     }
@@ -67,7 +70,7 @@ public class CatApiClient {
     public String getUserNameByPost( User user) {
         String json = JSONUtil.toJsonStr(user);
         HttpResponse res = HttpRequest
-                .post("http://localhost:9090/api/name/user")
+                .post( INTERFACE_GATEWAY_IP + ":" + INTERFACE_GATEWAY_PORT + "/api/name/user")
                 .addHeaders(getHeaderMap(json))
                 .body(json)
                 .execute();
